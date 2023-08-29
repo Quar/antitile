@@ -83,11 +83,11 @@ def main():
         else:
             k = args.k
         if args.factor:
-            poly = gcopoly.build_gco_rep(base, frequency, args.projection,
+            poly = gcopoly.build_gco_rep(base, frequency, args.mapping,
                                      tweak=args.tweak, k=k,
                                      normalize=not args.no_normalize)
         else:
-            poly = gcopoly.build_gco(base, frequency, args.projection,
+            poly = gcopoly.build_gco(base, frequency, args.mapping,
                                  tweak=args.tweak, k=k,
                                  normalize=not args.no_normalize)
         vertcolor = poly.group.astype(int)
@@ -98,10 +98,10 @@ def main():
         result += '#frequency = {}\n'.format(frequency)
         if args.filename:
             result += '#input file = {}\n'.format(args.filename)
-        result += '#projection = {}\n'.format(args.projection)
-        if args.projection in projection.PARALLEL:
+        result += '#projection = {}\n'.format(args.mapping)
+        if args.mapping in projection.PARALLEL:
             result += '#k = {}\n'.format(poly.k)
-        if args.projection in projection.PARALLEL + ['gc']:
+        if args.mapping in projection.PARALLEL + ['gc']:
             result += '#tweak = {}\n'.format(args.tweak)
         result += '#normalized = {}\n'.format(not args.no_normalize)
         print(result)
